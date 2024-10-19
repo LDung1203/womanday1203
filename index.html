@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women's Day</title>
+<link rel="icon" type="logo" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGbMgAEprCx0V9NgNt7TZXe6TBq9HFz0FPaQ&s">
+<style>
+    body {
+       /*  font-family: Arial, sans-serif; */
+        font-family: "Sofia", sans-serif;
+        background: url('https://24hstore.vn/upload_images/images/background-20-10/background-20-10-mau-xanh-la-cay-1.jpg') center/cover fixed no-repeat;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    #container {
+        max-width: 600px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+        color: #c2185b;
+        margin-top: 0;
+    }
+    p {
+        margin-top: 0;
+        text-align: justify;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 2px solid #c2185b;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #c2185b;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #a0184e;
+    }
+    .message-container {
+        margin-top: 20px;
+        text-align: left;
+    }
+    .message {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fce4ec;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    .heart-icon {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #c2185b;
+        font-size: 24px;
+    }
+    #messagesLink {
+        color: #c2185b;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+        display: block;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h1>CHÚC MỪNG NGÀY 20/10 CHÚC CÁC BẠN NỮ 8386</h1>
+    <h3>-------------Nhập tên vào sẽ có điều đặc biệt đó-------------</h3>
+    <h3 style="font-size: 14px;">                    (Ko cần dấu đâu nha)                     </h3>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <br><br>
+    <label for="colorPicker">Chọn màu cho hộp thoại nha: </label>
+    <input type="color" id="colorPicker" value="#000000">
+    <br><br>
+    <button onclick="generateMessage()">GỬi TÊN</button>
+    <div id="message"></div>
+    <a href="messages.html" id="messagesLink" target="_blank">Xem tin nhắn của mọi người</a>
+
+   <!-- <a href="messages.html" id="messagesLink">See Messages from Other Women</a> -->
+</div>
+
+<script>
+    function generateMessage() {
+        let name = document.getElementById("nameInput").value.trim();
+        if (name === "") {
+            alert("Please enter your name!");
+            return;
+        }
+
+        let acrostic = generateAcrostic(name);
+        let color = document.getElementById("colorPicker").value;
+        let message = `<div class="message-container">`;
+            message += `<div class="message" style="background-color: ${color}; color: #fff;">`;
+            message += `<span class="heart-icon">&hearts;</span>`;
+            message += `<p>--Chúc ${name} có một ngày 20/10 vv, luôn luôn ngập tràn tiếng cười, ngày càng xinh đẹp</p>`;
+            message += `<p>--Mà đã xinh đẹp rồi thì làm ơn đừng có buồn!!! Vì bạn luôn là một điều đặc biệt trên đời này, đặc biệt như tên bn vậy :)))</p>`; // Thay đổi nội dung lời chào
+            message += `<p>${acrostic}</p>`;
+            message += `<p>🤮không thể tin nổi tôi vừa viết thứ sến thế này🤮 </p>`; // Thay đổi nội dung lời giới thiệu bài thơ
+            message += `<p>--Hãy để lại thông điệp với mọi người để mọi người đều có cho mình những lời chúc tuyệt vời nhất trong ngày 20/10 nhaaaaa!!!!!</p>`; // Thay đổi lời mời chia sẻ thông điệp
+            message += `<textarea id="userMessage" rows="4" cols="50" placeholder="Viết thông điệp của bạn ở đây..."></textarea>`; // Thay đổi phần placeholder của ô nhập văn bản
+            message += `<button onclick="storeMessage('${name}')">Lưu thông điệp</button>`; // Thay đổi nút lưu
+            message += `</div></div>`;
+           
+            document.getElementById("message").innerHTML = message;
+    }
+
+    function generateAcrostic(name) {
+        let acrosticMessages = {
+            "A": [
+                "An nhiên trong tâm hồn, luôn giữ sự bình an và hạnh phúc trong cuộc sống",
+                "Ánh sáng của sự thông minh và sáng tạo luôn tỏa rạng.",
+                "Ấm áp bên gia đình, bạn bè, và những người yêu thương.",
+                "Ảnh hưởng tích cực đến những người xung quanh với tấm lòng nhân hậu."
+            ],
+            "B": [
+                "Bình an trong mọi bước đi, luôn vững vàng trước thử thách.",
+                "Bền bỉ và mạnh mẽ, không ngại đối diện với khó khăn.",
+                "Biết yêu thương và chia sẻ, mang niềm vui đến cho mọi người.",
+                "Bừng sáng với tài năng, sự tự tin và nụ cười rạng rỡ."
+            ],
+            "C": [
+                "Cát tường, luôn gặp may mắn và phúc lộc dồi dào.",
+                "Cứng cáp và kiên định, luôn vững vàng trong mọi hoàn cảnh.",
+                "Chân thành trong tình cảm, luôn nhận được yêu thương chân thật.",
+                "Chói sáng với vẻ đẹp tự tin và tài năng vượt trội."
+            ],
+            "D": [
+                "Duyên dáng, luôn tỏa sáng với vẻ đẹp nhẹ nhàng và cuốn hút.",
+                "Dồi dào sức khỏe và năng lượng để thực hiện mọi ước mơ.",
+                "Đảm đang, chu đáo trong cuộc sống và công việc.",
+                "Độc lập, tự tin và kiên cường trước mọi thử thách."
+            ],
+            "E": [
+                "Êm đềm, luôn sống trong bình yên và hạnh phúc.",
+                "E ấp vẻ đẹp dịu dàng và thanh lịch.",
+                "Én xuân, mang lại sự tươi mới và sức sống tràn đầy.",
+                "Ê-kip, luôn có những người đồng hành tốt đẹp trong cuộc sống và công việc."
+            ],
+            "G": [
+                "Giỏi giang, luôn thành công trong mọi lĩnh vực.",
+                "Gắn bó, có những mối quan hệ bền vững và yêu thương chân thành.",
+                "Ghi dấu, tạo ra những thành tựu đáng nhớ trong cuộc sống.",
+                "Giàu lòng nhân ái, luôn sẵn sàng giúp đỡ và chia sẻ với mọi người."
+            ],
+            "H": [
+                "Hạnh phúc, luôn tràn đầy niềm vui và tình yêu trong cuộc sống.",
+                "Hài hước, mang lại tiếng cười và niềm vui cho những người xung quanh.",
+                "Học hỏi, không ngừng phát triển bản thân và tích lũy kiến thức.",
+                "Hỗ trợ, luôn là nguồn động viên và chỗ dựa vững chắc cho bạn bè và gia đình."
+            ],
+            "I": [
+                "Ít nói, nhưng luôn để lại ấn tượng sâu sắc trong lòng mọi người.",
+                "In dấu, tạo ra những kỷ niệm đẹp và đáng nhớ trong cuộc sống.",
+                "Inspirational (truyền cảm hứng), khơi dậy động lực và niềm tin cho những người xung quanh.",
+                "Im lặng, biết lắng nghe và thấu hiểu, là người bạn tốt trong mọi hoàn cảnh."
+            ],
+            "K": [
+                "Kinh nghiệm, luôn học hỏi và trưởng thành qua từng thử thách.",
+                "Khéo léo, tài năng trong công việc và cuộc sống hàng ngày.",
+                "Kết nối, luôn duy trì những mối quan hệ tốt đẹp và bền vững.",
+                "Kiên cường, vượt qua mọi khó khăn với sự mạnh mẽ và dũng cảm."
+            ],
+            "L": [
+                "Lạc quan, luôn nhìn về phía trước với niềm tin vào tương lai.",
+                "Lôi cuốn, tỏa sáng với sức hút và sự quyến rũ riêng.",
+                "Linh hoạt, khéo léo thích nghi với mọi hoàn cảnh và thử thách.",
+                "Lòng nhân ái, luôn sẵn sàng giúp đỡ và chia sẻ với người khác."
+            ],
+            "M": [
+                "Mạnh mẽ, luôn kiên cường vượt qua mọi thử thách trong cuộc sống.",
+                "Mơ mộng, dám ước mơ lớn và theo đuổi đam mê của bản thân.",
+                "Mặn mà, mang lại sự ấm áp và tình yêu thương cho mọi người xung quanh.",
+                "Mẫu mực, là hình mẫu lý tưởng trong công việc và cuộc sống."
+            ],
+            "N": [
+                "Năng động, luôn tràn đầy sức sống và nhiệt huyết trong mọi việc.",
+                "Nhân ái, luôn sẵn lòng giúp đỡ và chia sẻ yêu thương với mọi người.",
+                "Ngọt ngào, mang lại niềm vui và sự ấm áp cho cuộc sống.",
+                "Nỗ lực, không ngừng cố gắng để đạt được ước mơ và mục tiêu."
+            ],
+            "O": [
+                "Ôn hòa, luôn mang lại sự bình yên và cảm giác thoải mái cho những người xung quanh.",
+                "Optimistic (lạc quan), luôn nhìn thấy ánh sáng và hy vọng trong mọi tình huống.",
+                "Opulent (sang trọng), tỏa ra vẻ đẹp và sự quyến rũ tự nhiên.",
+                "Ong bướm, là người biết bay bổng trong ước mơ và luôn tìm kiếm sự tự do."
+            ],
+            "P": [
+                "Pha lê, luôn rực rỡ và quý giá như những viên đá quý.",
+                "Pioneering (đột phá), dám nghĩ dám làm, mở đường cho bản thân và người khác.",
+                "Phúc hậu, luôn mang lại niềm vui và hạnh phúc cho mọi người.",
+                "Phong cách, có gu thẩm mỹ riêng và luôn tự tin trong bản thân."
+            ],
+            "Q": [
+                "Quyến rũ, luôn tỏa sáng với vẻ đẹp và sức hút đặc biệt.",
+                "Quý giá, là một viên ngọc quý trong cuộc sống của mọi người xung quanh.",
+                "Quyết tâm, không ngừng phấn đấu để đạt được mục tiêu của bản thân.",
+                "Quảng đại, luôn sẵn sàng chia sẻ và giúp đỡ mọi người xung quanh."
+            ],
+            "R": [
+                "Rực rỡ, luôn tỏa sáng với vẻ đẹp và sức sống tràn đầy.",
+                "Rắn rỏi, kiên cường và mạnh mẽ trong mọi hoàn cảnh.",
+                "Rộng lượng, luôn sẵn sàng chia sẻ và giúp đỡ người khác.",
+                "Rạng ngời, mang đến niềm vui và hạnh phúc cho mọi người xung quanh."
+            ],
+            "S": [
+                "Sáng tạo, luôn nghĩ ra những ý tưởng mới mẻ và độc đáo.",
+                "Sang trọng, tỏa ra vẻ đẹp và sự tinh tế trong mọi hoàn cảnh.",
+                "Sống động, mang lại năng lượng tích cực cho những người xung quanh.",
+                "Sắc sảo, thông minh và nhanh nhạy trong suy nghĩ và hành động."
+            ],
+            "T": [
+                "Tự tin, luôn vững vàng và kiên định với bản thân.",
+                "Tỏa sáng, là ngọn đèn dẫn lối cho những người xung quanh.",
+                "Thành công, đạt được mọi mục tiêu và ước mơ trong cuộc sống.",
+                "Tình cảm, luôn ấm áp và yêu thương những người xung quanh."
+            ],
+            "U": [
+                "Ưu tú, luôn tỏa sáng với tài năng và khả năng vượt trội.",
+                "Ung dung, luôn bình tĩnh và tự tin trong mọi tình huống.",
+                "Uốn nắn, biết lắng nghe và chia sẻ, giúp mọi người xung quanh phát triển.",
+                "Uể oải, nhưng luôn giữ được nét duyên dáng và sức sống bên trong."
+            ],
+            "V": [
+                "Vui vẻ, luôn tràn đầy tiếng cười và năng lượng tích cực.",
+                "Vững vàng, kiên cường trước mọi thử thách và khó khăn.",
+                "Vẻ đẹp, toát lên từ cả bên ngoài lẫn bên trong, thu hút mọi ánh nhìn.",
+                "Vị tha, luôn sẵn sàng giúp đỡ và chia sẻ yêu thương với mọi người xung quanh."
+            ],
+            "X": [
+                "Xinh đẹp, luôn tỏa sáng với vẻ ngoài quyến rũ và thu hút.",
+                "Xúc động, luôn biết tạo ra những khoảnh khắc đáng nhớ trong cuộc sống.",
+                "Xuyên suốt, luôn kiên trì theo đuổi đam mê và ước mơ của mình.",
+                "Xuất sắc, là hình mẫu cho sự nỗ lực và thành công trong công việc và cuộc sống."
+            ],
+            "Y": [
+                "Yêu thương, luôn mang đến những điều tốt đẹp và ấm áp cho mọi người.",
+                "Yên bình, sống trong sự thanh thản và hài lòng với cuộc sống.",
+                "Yếu tố quyết định trong sự thành công của những người xung quanh.",
+                "Yêu quý, luôn được mọi người yêu mến và trân trọng."
+            ]
+        };
+        
+        name = name.toUpperCase();
+        
+        let acrostic = "";
+        for (let i = 0; i < name.length; i++) {
+            let initial = name[i];
+            if (initial in acrosticMessages) {
+                let messageIndex = Math.floor(Math.random() * acrosticMessages[initial].length);
+                let message = acrosticMessages[initial][messageIndex];
+                acrostic += initial + ": " + message + "<br>";
+            }
+        }
+        
+        return acrostic;
+    }
+
+    function storeMessage(name) {
+        let userMessage = document.getElementById("userMessage").value.trim();
+        if (userMessage === "") {
+            alert("Please enter a message!");
+            return;
+        }
+        localStorage.setItem(name, userMessage);
+        alert("Message saved successfully!");
+        document.getElementById("userMessage").value = "";
+    }
+</script>
+</body>
+</html>
+
